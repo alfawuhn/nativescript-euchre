@@ -1,0 +1,36 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Euchre" icon="" />
+    
+    <GridLayout rows="*, 2*, *">
+        <!-- Opponent's cards (face down) -->
+        <StackLayout row="0" orientation="horizontal" horizontalAlignment="center">
+            <Label text="🂠" class="text-4xl" repeat="5"/>
+        </StackLayout>
+
+        <!-- Game table -->
+        <GridLayout row="1" rows="*, *, *" columns="*, *, *" class="bg-green-800">
+            <!-- Trump suit indicator -->
+            <Label row="0" col="1" text="{{ trumpSuitDisplay }}" class="text-xl text-center text-white"/>
+            
+            <!-- Current trick cards -->
+            <StackLayout row="1" col="1" orientation="horizontal" horizontalAlignment="center">
+                <Label text="{{ currentTrickDisplay }}" class="text-2xl text-white"/>
+            </StackLayout>
+
+            <!-- Score display -->
+            <Label row="2" col="1" text="{{ 'Score: ' + gameState.scores.NS + ' - ' + gameState.scores.EW }}" 
+                   class="text-xl text-center text-white"/>
+        </GridLayout>
+
+        <!-- Player's hand -->
+        <ScrollView row="2" orientation="horizontal">
+            <StackLayout orientation="horizontal" horizontalAlignment="center">
+                <Repeater items="{{ currentPlayer.hand }}">
+                    <Repeater.itemTemplate>
+                        <Button text="{{ toString() }}" tap="{{ $parent.onCardTap }}" class="card-button"/>
+                    </Repeater.itemTemplate>
+                </Repeater>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>

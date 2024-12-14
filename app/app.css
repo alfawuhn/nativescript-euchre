@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-button {
+    background-color: white;
+    color: black;
+    border-width: 1;
+    border-color: #333;
+    border-radius: 8;
+    margin: 4;
+    padding: 8 16;
+    min-width: 60;
+}
+
+.card-button:active {
+    background-color: #eee;
+}
